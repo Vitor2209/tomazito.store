@@ -84,7 +84,7 @@ const brazilianTeams = [
   { id: 'flamengo', name: 'Flamengo', badge: 'assets/images/flamengo.svg' },
   { id: 'palmeiras', name: 'Palmeiras', badge: 'assets/images/palmeiras.svg' },
   { id: 'corinthians', name: 'Corinthians', badge: 'assets/images/corinthians.svg' },
-  { id: 'saopaulo', name: 'São Paulo', badge: 'assets/images/saopaulo.svg' },
+  { id: 'saopaulo', name: 'São Paulo', badge: 'assets/images/saopaulo.png' },
   { id: 'santos', name: 'Santos', badge: 'assets/images/santos.svg' },
   { id: 'gremio', name: 'Grêmio', badge: 'assets/images/gremio.svg' },
   { id: 'internacional', name: 'Internacional', badge: 'assets/images/internacional.svg' },
