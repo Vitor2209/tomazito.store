@@ -81,18 +81,18 @@ const products = [
 
 // Brazilian teams data
 const brazilianTeams = [
-  { id: 'flamengo', name: 'Flamengo', badge: '../assets/images/flamengo.svg' },
-  { id: 'palmeiras', name: 'Palmeiras', badge: '../assets/images/palmeiras.svg' },
-  { id: 'corinthians', name: 'Corinthians', badge: '../assets/images/corinthians.svg' },
-  { id: 'saopaulo', name: 'São Paulo', badge: '../assets/images/saopaulo.svg' },
-  { id: 'santos', name: 'Santos', badge: '../assets/images/santos.svg' },
-  { id: 'gremio', name: 'Grêmio', badge: '../assets/images/gremio.svg' },
-  { id: 'internacional', name: 'Internacional', badge: '../assets/images/internacional.svg' },
-  { id: 'atletico-mg', name: 'Atlético-MG', badge: '../assets/images/atletico.svg' },
-  { id: 'cruzeiro', name: 'Cruzeiro', badge: '../assets/images/cruzeiro.png' },
-  { id: 'fluminense', name: 'Fluminense', badge: '../assets/images/fluminense.svg' },
-  { id: 'vasco', name: 'Vasco', badge: '../assets/images/vasco.svg' },
-  { id: 'botafogo', name: 'Botafogo', badge: '../assets/images/botafogo.svg' }
+  { id: 'flamengo', name: 'Flamengo', badge: 'assets/images/flamengo.svg' },
+  { id: 'palmeiras', name: 'Palmeiras', badge: 'assets/images/palmeiras.svg' },
+  { id: 'corinthians', name: 'Corinthians', badge: 'assets/images/corinthians.svg' },
+  { id: 'saopaulo', name: 'São Paulo', badge: 'assets/images/saopaulo.svg' },
+  { id: 'santos', name: 'Santos', badge: 'assets/images/santos.svg' },
+  { id: 'gremio', name: 'Grêmio', badge: 'assets/images/gremio.svg' },
+  { id: 'internacional', name: 'Internacional', badge: 'assets/images/internacional.svg' },
+  { id: 'atletico-mg', name: 'Atlético-MG', badge: 'assets/images/atletico.svg' },
+  { id: 'cruzeiro', name: 'Cruzeiro', badge: 'assets/images/cruzeiro.png' },
+  { id: 'fluminense', name: 'Fluminense', badge: 'assets/images/fluminense.svg' },
+  { id: 'vasco', name: 'Vasco', badge: 'assets/images/vasco.svg' },
+  { id: 'botafogo', name: 'Botafogo', badge: 'assets/images/botafogo.svg' }
 ];
 
 
