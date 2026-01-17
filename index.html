@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tomazito.store - As Melhores Camisas de Futebol</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>tomazito.store</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link active" data-translate="nav-home">Início</a>
+                <a href="pages/produtos.html" class="nav-link" data-translate="nav-products">Produtos</a>
+                <a href="pages/contato.html" class="nav-link" data-translate="nav-contact">Contato</a>
+                <a href="pages/conta.html" class="nav-link" data-translate="nav-account">Minha Conta</a>
+            </nav>
+            <div class="header-actions">
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                </div>
+                <a href="pages/favoritos.html" class="icon-btn" id="favoritesBtn" title="Favoritos">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="favoritesBadge">0</span>
+                </a>
+                <a href="pages/carrinho.html" class="icon-btn" id="cartBtn" title="Carrinho">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" data-translate="hero-title">As Melhores Camisas<br>de Futebol</h1>
+            <p class="hero-subtitle" data-translate="hero-subtitle">Coleção completa dos principais times brasileiros e
+                internacionais. £35 cada ou 5 por £100.</p>
+            <div class="hero-buttons">
+                <a href="pages/produtos.html" class="btn btn-primary" data-translate="shop-now">Comprar
+                    Agora</a>
+                <a href="#promocoes" class="btn btn-secondary" data-translate="see-promos">Ver Promoções</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1552066379-e7bfd22155c5?w=500&h=500&fit=crop"
+                alt="Camisa de Futebol">
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section class="promotions-section" id="promocoes">
+        <div class="container">
+            <div class="promo-grid">
+                <div class="promo-card">
+                    <i class="fas fa-tag"></i>
+                    <h3 data-translate="promo-price">£35 por Camisa</h3>
+                    <p data-translate="promo-price-desc">Preço único para todas as camisas</p>
+                </div>
+                <div class="promo-card highlight">
+                    <i class="fas fa-fire"></i>
+                    <h3 data-translate="promo-bundle">5 por £100</h3>
+                    <p data-translate="promo-bundle-desc">Leve 5 e pague menos!</p>
+                </div>
+                <div class="promo-card">
+                    <i class="fas fa-truck"></i>
+                    <h3 data-translate="promo-delivery">Entrega 1-5 dias</h3>
+                    <p data-translate="promo-delivery-desc">Envio rápido para todo o mundo</p>
+                </div>
+                <div class="promo-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3 data-translate="promo-trust">Loja Confiável</h3>
+                    <p data-translate="promo-trust-desc">+5000 clientes satisfeitos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products-section" id="destaques">
+        <div class="container">
+            <h2 class="section-title" data-translate="featured-title">Camisas em Destaque</h2>
+            <div class="products-carousel-wrapper">
+                <button class="carousel-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="products-carousel" id="productsCarousel">
+                    <!-- Products will be inserted via JS -->
+                </div>
+                <button class="carousel-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brazilian Teams Section -->
+    <section class="teams-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="teams-title">Times Brasileiros</h2>
+            <p class="section-subtitle" data-translate="teams-subtitle">Clique no escudo para ver as camisas do seu time
+            </p>
+            <div class="teams-grid" id="teamsGrid">
+                <!-- Teams will be inserted via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="delivery-title">Entregas Internacionais</h2>
+            <p class="section-subtitle" data-translate="delivery-subtitle">Enviamos para estas regiões destacadas</p>
+
+            <div class="map-container">
+                <div class="map-image"></div>
+        </div>
+    </section>
+
+
+    <!-- Jersey Care Section -->
+    <section class="care-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="care-title">Cuidados com as Camisas</h2>
+            <div class="care-grid">
+                <div class="care-card">
+                    <i class="fas fa-tint"></i>
+                    <h3 data-translate="care-wash">Lavagem</h3>
+                    <p data-translate="care-wash-desc">Lave à mão ou no ciclo delicado. Use água fria e sabão neutro.
+                    </p>
+                </div>
+                <div class="care-card">
+                    <i class="fas fa-wind"></i>
+                    <h3 data-translate="care-dry">Secagem</h3>
+                    <p data-translate="care-dry-desc">Não use secadora. Seque à sombra em local ventilado.</p>
+                </div>
+                <div class="care-card">
+                    <i class="fas fa-temperature-low"></i>
+                    <h3 data-translate="care-iron">Passagem</h3>
+                    <p data-translate="care-iron-desc">Passe em temperatura baixa. Nunca passe sobre estampas.</p>
+                </div>
+                <div class="care-card">
+                    <i class="fas fa-box"></i>
+                    <h3 data-translate="care-store">Armazenamento</h3>
+                    <p data-translate="care-store-desc">Guarde dobrada em local seco, longe de umidade e luz solar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="testimonials-title">O que Nossos Clientes Dizem</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Silva">
+                        <div>
+                            <h4>João Silva</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p data-translate="testimonial-1">"Camisa de excelente qualidade! Chegou rápido e o atendimento foi
+                        nota 10. Recomendo!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Santos">
+                        <div>
+                            <h4>Maria Santos</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p data-translate="testimonial-2">"Comprei 5 camisas e todas vieram perfeitas! Ótimo
+                        custo-benefício."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Carlos Oliveira">
+                        <div>
+                            <h4>Carlos Oliveira</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p data-translate="testimonial-3">"Já comprei várias vezes e sempre fui bem atendido. Entrega super
+                        rápida!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="newsletter-title">Receba Ofertas Exclusivas</h2>
+            <p class="section-subtitle" data-translate="newsletter-subtitle">Cadastre-se e ganhe 10% de desconto na
+                primeira compra!</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Seu melhor e-mail" class="newsletter-input" required>
+                <button type="submit" class="btn btn-primary" data-translate="subscribe">Inscrever</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 data-translate="footer-store">Loja</h4>
+                <ul>
+                    <li><a href="pages/produtos.html" data-translate="footer-all-products">Todos os Produtos</a></li>
+                    <li><a href="#destaques" data-translate="footer-featured">Destaques</a></li>
+                    <li><a href="#promocoes" data-translate="footer-promos">Promoções</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-support">Atendimento</h4>
+                <ul>
+                    <li><a href="pages/contato.html" data-translate="footer-contact">Contato</a></li>
+                    <li><a href="#" data-translate="footer-shipping">Envio e Entrega</a></li>
+                    <li><a href="#" data-translate="footer-returns">Devoluções</a></li>
+                    <li><a href="#" data-translate="footer-faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-account">Minha Conta</h4>
+                <ul>
+                    <li><a href="pages/contato.html" data-translate="footer-profile">Meu Perfil</a></li>
+                    <li><a href="pages/pedidos.html" data-translate="footer-orders">Meus Pedidos</a></li>
+                    <li><a href="pages/favoritos.html" data-translate="footer-wishlist">Lista de Desejos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-social">Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 tomazito.store <span data-translate="footer-rights">Todos os direitos reservados.</span></p>
+            <div class="footer-links">
+                <a href="#" data-translate="footer-privacy">Privacidade</a>
+                <a href="#" data-translate="footer-terms">Termos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/447544180397" target="_blank" class="whatsapp-float" id="whatsappBtn">
+        <i class="fab fa-whatsapp"></i>
+        <span data-translate="whatsapp-text">Fale Conosco</span>
+    </a>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="js/translation.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

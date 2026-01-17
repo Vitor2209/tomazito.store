@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - tomazito.store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>tomazito.store</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link" data-translate="nav-home">Início</a>
+                <a href="produtos.html" class="nav-link active" data-translate="nav-products">Produtos</a>
+                <a href="contato.html" class="nav-link" data-translate="nav-contact">Contato</a>
+                <a href="conta.html" class="nav-link" data-translate="nav-account">Minha Conta</a>
+            </nav>
+            <div class="header-actions">
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                </div>
+                <a href="favoritos.html" class="icon-btn" id="favoritesBtn" title="Favoritos">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="favoritesBadge">0</span>
+                </a>
+                <a href="carrinho.html" class="icon-btn" id="cartBtn" title="Carrinho">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 data-translate="products-title">Todos os Produtos</h1>
+        <p data-translate="products-subtitle">Encontre a camisa do seu time favorito</p>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="page-content">
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be inserted via JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 data-translate="footer-store">Loja</h4>
+                <ul>
+                    <li><a href="produtos.html" data-translate="footer-all-products">Todos os Produtos</a></li>
+                    <li><a href="/#destaques" data-translate="footer-featured">Destaques</a></li>
+                    <li><a href="/#promocoes" data-translate="footer-promos">Promoções</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-support">Atendimento</h4>
+                <ul>
+                    <li><a href="contato.html" data-translate="footer-contact">Contato</a></li>
+                    <li><a href="#" data-translate="footer-shipping">Envio e Entrega</a></li>
+                    <li><a href="#" data-translate="footer-returns">Devoluções</a></li>
+                    <li><a href="#" data-translate="footer-faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-account">Minha Conta</h4>
+                <ul>
+                    <li><a href="conta.html" data-translate="footer-profile">Meu Perfil</a></li>
+                    <li><a href="pedidos.html" data-translate="footer-orders">Meus Pedidos</a></li>
+                    <li><a href="favoritos.html" data-translate="footer-wishlist">Lista de Desejos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-social">Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 tomazito.store <span data-translate="footer-rights">Todos os direitos reservados.</span></p>
+            <div class="footer-links">
+                <a href="#" data-translate="footer-privacy">Privacidade</a>
+                <a href="#" data-translate="footer-terms">Termos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/447544180397" target="_blank" class="whatsapp-float" id="whatsappBtn">
+        <i class="fab fa-whatsapp"></i>
+        <span data-translate="whatsapp-text">Fale Conosco</span>
+    </a>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="../js/translations.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProductsPage();
+        });
+        
+        function renderProductsPage() {
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+            
+            // Check for team filter
+            const urlParams = new URLSearchParams(window.location.search);
+            const teamFilter = urlParams.get('team');
+            
+            let filteredProducts = products;
+            if (teamFilter) {
+                filteredProducts = products.filter(p => p.team === teamFilter);
+            }
+            
+            grid.innerHTML = filteredProducts.map(product => createProductCard(product)).join('');
+            addProductCardListeners();
+        }
+    </script>
+</body>
+</html>

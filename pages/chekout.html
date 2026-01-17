@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Brazuca Store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>Brazuca Store</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link" data-translate="nav-home">Início</a>
+                <a href="/static/pages/produtos.html" class="nav-link" data-translate="nav-products">Produtos</a>
+                <a href="/static/pages/contato.html" class="nav-link" data-translate="nav-contact">Contato</a>
+                <a href="/static/pages/conta.html" class="nav-link" data-translate="nav-account">Minha Conta</a>
+            </nav>
+            <div class="header-actions">
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                </div>
+                <a href="/static/pages/favoritos.html" class="icon-btn" id="favoritesBtn" title="Favoritos">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="favoritesBadge">0</span>
+                </a>
+                <a href="/static/pages/carrinho.html" class="icon-btn" id="cartBtn" title="Carrinho">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 data-translate="checkout-title">Finalizar Compra</h1>
+    </section>
+
+    <!-- Checkout Content -->
+    <section class="page-content">
+        <div class="cart-container">
+            <div class="checkout-form">
+                <form id="checkoutForm">
+                    <h3 data-translate="checkout-personal">Dados Pessoais</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">País</label>
+                            <select id="country" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="BR">Brasil</option>
+                                <option value="UK">Reino Unido</option>
+                                <option value="US">Estados Unidos</option>
+                                <option value="PT">Portugal</option>
+                                <option value="ES">Espanha</option>
+                                <option value="FR">França</option>
+                                <option value="DE">Alemanha</option>
+                                <option value="IT">Itália</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <h3 data-translate="checkout-address" style="margin-top: 2rem;">Endereço de Entrega</h3>
+                    <div class="form-group">
+                        <label for="address">Endereço</label>
+                        <input type="text" id="address" class="form-control" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Cidade</label>
+                            <input type="text" id="city" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalcode">Código Postal</label>
+                            <input type="text" id="postalcode" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-top: 2rem;" data-translate="checkout-finish">Confirmar Pedido</button>
+                </form>
+            </div>
+            
+            <div class="cart-summary">
+                <h3>Resumo do Pedido</h3>
+                <div id="orderSummary">
+                    <!-- Order summary will be inserted via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 data-translate="footer-store">Loja</h4>
+                <ul>
+                    <li><a href="/static/pages/produtos.html" data-translate="footer-all-products">Todos os Produtos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-support">Atendimento</h4>
+                <ul>
+                    <li><a href="/static/pages/contato.html" data-translate="footer-contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-account">Minha Conta</h4>
+                <ul>
+                    <li><a href="/static/pages/conta.html" data-translate="footer-profile">Meu Perfil</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-social">Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Brazuca Store. <span data-translate="footer-rights">Todos os direitos reservados.</span></p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float" id="whatsappBtn">
+        <i class="fab fa-whatsapp"></i>
+        <span data-translate="whatsapp-text">Fale Conosco</span>
+    </a>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="../js/translations.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOrderSummary();
+            initCheckoutForm();
+        });
+        
+        function renderOrderSummary() {
+            const summary = document.getElementById('orderSummary');
+            if (!summary) return;
+            
+            if (state.cart.length === 0) {
+                window.location.href = '/static/pages/carrinho.html';
+                return;
+            }
+            
+            const subtotal = getCartTotal();
+            
+            summary.innerHTML = `
+                ${state.cart.map(item => `
+                    <div class="summary-row">
+                        <span>${item.name} (${item.size}) x${item.quantity}</span>
+                        <span>£${item.price * item.quantity}</span>
+                    </div>
+                `).join('')}
+                <div class="summary-row">
+                    <span>${t('cart-shipping')}</span>
+                    <span>${t('cart-free-shipping')}</span>
+                </div>
+                <div class="summary-row total">
+                    <span>${t('cart-total')}</span>
+                    <span>£${subtotal}</span>
+                </div>
+            `;
+        }
+        
+        function initCheckoutForm() {
+            const form = document.getElementById('checkoutForm');
+            if (!form) return;
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const orderData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    country: document.getElementById('country').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    postalcode: document.getElementById('postalcode').value,
+                    items: state.cart,
+                    total: getCartTotal(),
+                    date: new Date().toISOString(),
+                    id: Date.now()
+                };
+                
+                // Save order
+                state.orders.push(orderData);
+                
+                // Create mailto link
+                const subject = encodeURIComponent(`Novo Pedido - Brazuca Store #${orderData.id}`);
+                const body = encodeURIComponent(`
+Novo pedido recebido!
+
+Cliente: ${orderData.name}
+E-mail: ${orderData.email}
+Telefone: ${orderData.phone}
+
+Endereço:
+${orderData.address}
+${orderData.city}, ${orderData.postalcode}
+${orderData.country}
+
+Itens:
+${state.cart.map(item => `- ${item.name} (${item.size}) x${item.quantity} - £${item.price * item.quantity}`).join('\n')}
+
+Total: £${orderData.total}
+                `);
+                
+                // Open mailto
+                window.location.href = `mailto:contato@brazucastore.com?subject=${subject}&body=${body}`;
+                
+                // Clear cart
+                state.cart = [];
+                saveState();
+                
+                // Show confirmation
+                showToast(t('msg-order-confirmed'));
+                
+                // Redirect to orders page
+                setTimeout(() => {
+                    window.location.href = '/static/pages/pedidos.html';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

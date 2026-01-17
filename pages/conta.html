@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Brazuca Store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>Brazuca Store</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link" data-translate="nav-home">Início</a>
+                <a href="/static/pages/produtos.html" class="nav-link" data-translate="nav-products">Produtos</a>
+                <a href="/static/pages/contato.html" class="nav-link" data-translate="nav-contact">Contato</a>
+                <a href="/static/pages/conta.html" class="nav-link active" data-translate="nav-account">Minha Conta</a>
+            </nav>
+            <div class="header-actions">
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                </div>
+                <a href="/static/pages/favoritos.html" class="icon-btn" id="favoritesBtn" title="Favoritos">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="favoritesBadge">0</span>
+                </a>
+                <a href="/static/pages/carrinho.html" class="icon-btn" id="cartBtn" title="Carrinho">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 data-translate="account-title">Minha Conta</h1>
+    </section>
+
+    <!-- Account Content -->
+    <section class="page-content">
+        <div id="accountContent">
+            <!-- Will show login/register or account dashboard -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 data-translate="footer-store">Loja</h4>
+                <ul>
+                    <li><a href="/static/pages/produtos.html" data-translate="footer-all-products">Todos os Produtos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-support">Atendimento</h4>
+                <ul>
+                    <li><a href="/static/pages/contato.html" data-translate="footer-contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-account">Minha Conta</h4>
+                <ul>
+                    <li><a href="/static/pages/conta.html" data-translate="footer-profile">Meu Perfil</a></li>
+                    <li><a href="/static/pages/pedidos.html" data-translate="footer-orders">Meus Pedidos</a></li>
+                    <li><a href="/static/pages/favoritos.html" data-translate="footer-wishlist">Lista de Desejos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-translate="footer-social">Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Brazuca Store. <span data-translate="footer-rights">Todos os direitos reservados.</span></p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float" id="whatsappBtn">
+        <i class="fab fa-whatsapp"></i>
+        <span data-translate="whatsapp-text">Fale Conosco</span>
+    </a>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="../static/js/translations.js"></script>
+    <script src="../static/js/data.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAccountPage();
+        });
+        
+        function renderAccountPage() {
+            const content = document.getElementById('accountContent');
+            if (!content) return;
+            
+            if (state.user) {
+                // Show account dashboard
+                content.innerHTML = `
+                    <div class="account-container">
+                        <div class="account-sidebar">
+                            <nav class="account-menu">
+                                <a href="/static/pages/conta.html" class="active">
+                                    <i class="fas fa-user"></i>
+                                    <span data-translate="account-profile">${t('account-profile')}</span>
+                                </a>
+                                <a href="/static/pages/pedidos.html">
+                                    <i class="fas fa-box"></i>
+                                    <span data-translate="account-orders">${t('account-orders')}</span>
+                                </a>
+                                <a href="/static/pages/favoritos.html">
+                                    <i class="fas fa-heart"></i>
+                                    <span data-translate="account-wishlist">${t('account-wishlist')}</span>
+                                </a>
+                                <a href="#" onclick="logout(); return false;">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span data-translate="account-logout">${t('account-logout')}</span>
+                                </a>
+                            </nav>
+                        </div>
+                        <div class="account-content">
+                            <h2 data-translate="account-profile">${t('account-profile')}</h2>
+                            <form id="profileForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control" value="${state.user.name}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input type="email" class="form-control" value="${state.user.email}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefone</label>
+                                    <input type="tel" class="form-control" value="${state.user.phone || ''}" readonly>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Show login/register forms
+                content.innerHTML = `
+                    <div class="auth-container">
+                        <div class="auth-card" id="loginCard">
+                            <h2 data-translate="login-title">${t('login-title')}</h2>
+                            <form id="loginForm">
+                                <div class="form-group">
+                                    <label data-translate="login-email">${t('login-email')}</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-translate="login-password">${t('login-password')}</label>
+                                    <input type="password" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-full" data-translate="login-title">${t('login-title')}</button>
+                            </form>
+                            <p class="auth-footer">
+                                <span data-translate="login-no-account">${t('login-no-account')}</span>
+                                <a href="#" onclick="showRegister(); return false;" data-translate="login-create">${t('login-create')}</a>
+                            </p>
+                        </div>
+                        
+                        <div class="auth-card" id="registerCard" style="display: none;">
+                            <h2 data-translate="register-title">${t('register-title')}</h2>
+                            <form id="registerForm">
+                                <div class="form-group">
+                                    <label data-translate="register-name">${t('register-name')}</label>
+                                    <input type="text" id="regName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-translate="login-email">${t('login-email')}</label>
+                                    <input type="email" id="regEmail" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-translate="register-phone">${t('register-phone')}</label>
+                                    <input type="tel" id="regPhone" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-translate="login-password">${t('login-password')}</label>
+                                    <input type="password" id="regPassword" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-full" data-translate="register-title">${t('register-title')}</button>
+                            </form>
+                            <p class="auth-footer">
+                                <span data-translate="register-has-account">${t('register-has-account')}</span>
+                                <a href="#" onclick="showLogin(); return false;" data-translate="register-login">${t('register-login')}</a>
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                // Initialize forms
+                initAuthForms();
+            }
+        }
+        
+        function showRegister() {
+            document.getElementById('loginCard').style.display = 'none';
+            document.getElementById('registerCard').style.display = 'block';
+        }
+        
+        function showLogin() {
+            document.getElementById('registerCard').style.display = 'none';
+            document.getElementById('loginCard').style.display = 'block';
+        }
+        
+        function initAuthForms() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // Simulate login
+                    state.user = { name: 'Usuário', email: 'usuario@email.com' };
+                    saveState();
+                    renderAccountPage();
+                });
+            }
+            
+            if (registerForm) {
+                registerForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('regName').value;
+                    const email = document.getElementById('regEmail').value;
+                    const phone = document.getElementById('regPhone').value;
+                    
+                    // Create user
+                    state.user = { name, email, phone };
+                    saveState();
+                    
+                    // Send registration via mailto
+                    const subject = encodeURIComponent('Novo Cadastro - Brazuca Store');
+                    const body = encodeURIComponent(`
+Novo cadastro realizado!
+
+Nome: ${name}
+E-mail: ${email}
+Telefone: ${phone}
+                    `);
+                    window.location.href = `mailto:contato@brazucastore.com?subject=${subject}&body=${body}`;
+                    
+                    showToast('Cadastro realizado com sucesso!');
+                    renderAccountPage();
+                });
+            }
+        }
+        
+        function logout() {
+            state.user = null;
+            localStorage.removeItem('brazucaUser');
+            renderAccountPage();
+        }
+    </script>
+</body>
+</html>
