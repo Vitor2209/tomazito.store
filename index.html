@@ -4,302 +4,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tomazito.store - As Melhores Camisas de Futebol</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Brazuca Store - As Melhores Camisas de Futebol</title>
+    <meta name="description"
+        content="As melhores camisas de futebol dos times brasileiros e internacionais. £35 cada ou 5 por £100. Entrega Royal Mail em 1-5 dias.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <!-- Header -->
+
+    <!-- ============================================
+         HEADER
+         ============================================ -->
     <header class="header" id="header">
-        <div class="header-container">
-            <a href="/" class="logo">
-                <i class="fas fa-futbol"></i>
-                <span>tomazito.store</span>
+        <div class="container header-content">
+            <a href="#home" class="logo">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">Tomazito.store</span>
             </a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="/" class="nav-link active" data-translate="nav-home">Início</a>
-                <a href="pages/produtos.html" class="nav-link" data-translate="nav-products">Produtos</a>
-                <a href="pages/contato.html" class="nav-link" data-translate="nav-contact">Contato</a>
-                <a href="pages/conta.html" class="nav-link" data-translate="nav-account">Minha Conta</a>
+
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active" data-i18n="home">Início</a></li>
+                    <li><a href="#produtos" class="nav-link" data-i18n="products">Produtos</a></li>
+                    <li><a href="#contato" class="nav-link" data-i18n="contact">Contato</a></li>
+                    <li><a href="#conta" class="nav-link" data-i18n="myAccount">Minha Conta</a></li>
+                </ul>
             </nav>
+
             <div class="header-actions">
-                <div class="language-selector">
-                    <button class="lang-btn active" data-lang="pt">🇧🇷 PT</button>
-                    <span class="lang-divider">|</span>
-                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-                </div>
-                <a href="pages/favoritos.html" class="icon-btn" id="favoritesBtn" title="Favoritos">
-                    <i class="far fa-heart"></i>
-                    <span class="badge" id="favoritesBadge">0</span>
-                </a>
-                <a href="pages/carrinho.html" class="icon-btn" id="cartBtn" title="Carrinho">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="badge" id="cartBadge">0</span>
-                </a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
+                <button class="lang-toggle" id="langToggle" title="Traduzir">
+                    <span class="lang-flag">🇧🇷</span>
+                    <span class="lang-text">PT</span>
+                </button>
+                <button class="icon-btn" id="favoritesBtn" title="Favoritos">
+                    <span class="icon">♥</span>
+                    <span class="badge" id="favCount">0</span>
+                </button>
+                <button class="icon-btn" id="cartBtn" title="Carrinho">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title" data-translate="hero-title">As Melhores Camisas<br>de Futebol</h1>
-            <p class="hero-subtitle" data-translate="hero-subtitle">Coleção completa dos principais times brasileiros e
-                internacionais. £35 cada ou 5 por £100.</p>
-            <div class="hero-buttons">
-                <a href="pages/produtos.html" class="btn btn-primary" data-translate="shop-now">Comprar
-                    Agora</a>
-                <a href="#promocoes" class="btn btn-secondary" data-translate="see-promos">Ver Promoções</a>
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="assets/images/campo.png" alt="Campo de futebol" class="hero-bg-img">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title" data-i18n="heroTitle">As Melhores Camisas<br>de Futebol</h1>
+                <p class="hero-subtitle" data-i18n="heroSubtitle">Coleção completa dos principais times brasileiros e
+                    internacionais.<br>£35 cada ou 5 por £100.</p>
+                <div class="hero-ctas">
+                    <a href="#produtos" class="btn btn-primary" data-i18n="shopNow">Comprar Agora</a>
+                    <a href="#promocoes" class="btn btn-outline-white" data-i18n="seePromos">Ver Promoções</a>
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1552066379-e7bfd22155c5?w=500&h=500&fit=crop"
-                alt="Camisa de Futebol">
-        </div>
-    </section>
-
-    <!-- Promotions Section -->
-    <section class="promotions-section" id="promocoes">
-        <div class="container">
-            <div class="promo-grid">
-                <div class="promo-card">
-                    <i class="fas fa-tag"></i>
-                    <h3 data-translate="promo-price">£35 por Camisa</h3>
-                    <p data-translate="promo-price-desc">Preço único para todas as camisas</p>
-                </div>
-                <div class="promo-card highlight">
-                    <i class="fas fa-fire"></i>
-                    <h3 data-translate="promo-bundle">5 por £100</h3>
-                    <p data-translate="promo-bundle-desc">Leve 5 e pague menos!</p>
-                </div>
-                <div class="promo-card">
-                    <i class="fas fa-truck"></i>
-                    <h3 data-translate="promo-delivery">Entrega 1-5 dias</h3>
-                    <p data-translate="promo-delivery-desc">Envio rápido para todo o mundo</p>
-                </div>
-                <div class="promo-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3 data-translate="promo-trust">Loja Confiável</h3>
-                    <p data-translate="promo-trust-desc">+5000 clientes satisfeitos</p>
-                </div>
+            <div class="hero-image">
+                <img src="assets/images/cruzeiro.png" alt="Camisas de futebol" class="hero-shirt-img">
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="products-section" id="destaques">
+    <!-- ============================================
+         BENEFITS STRIP
+         ============================================ -->
+    <section class="benefits" id="promocoes">
         <div class="container">
-            <h2 class="section-title" data-translate="featured-title">Camisas em Destaque</h2>
-            <div class="products-carousel-wrapper">
-                <button class="carousel-btn prev-btn" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="products-carousel" id="productsCarousel">
-                    <!-- Products will be inserted via JS -->
+            <div class="benefits-grid">
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                    <strong data-i18n="benefitPrice">£35 por Camisa</strong>
+                    <span data-i18n="benefitPriceDesc">Preço único para todas as camisas</span>
                 </div>
-                <button class="carousel-btn next-btn" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+
+                <div class="benefit-card highlight">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <strong data-i18n="benefitPromo">5 por £100</strong>
+                    <span data-i18n="benefitPromoDesc">Leve 5 e pague menos!</span>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <strong data-i18n="benefitDelivery">Entrega 1-5 dias</strong>
+                    <span data-i18n="benefitDeliveryDesc">Envio rápido por toda a região</span>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-shield-check"></i>
+                    </div>
+                    <strong data-i18n="benefitTrust">Loja Confiável</strong>
+                    <span data-i18n="benefitTrustDesc">+1200 clientes satisfeitos</span>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Brazilian Teams Section -->
-    <section class="teams-section">
+    <!-- ============================================
+         FEATURED PRODUCTS CAROUSEL
+         ============================================ -->
+    <section class="section featured" id="produtos">
         <div class="container">
-            <h2 class="section-title" data-translate="teams-title">Times Brasileiros</h2>
-            <p class="section-subtitle" data-translate="teams-subtitle">Clique no escudo para ver as camisas do seu time
-            </p>
+            <h2 class="section-title" data-i18n="featuredTitle">Camisas em Destaque</h2>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Anterior">‹</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Products injected by JS -->
+                </div>
+                <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Próximo">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         BRAZILIAN TEAMS
+         ============================================ -->
+    <section class="section teams" id="times">
+        <div class="container">
+            <h2 class="section-title" data-i18n="teamsTitle">Times Brasileiros</h2>
+            <p class="section-subtitle" data-i18n="teamsSubtitle">Clique no escudo para ver as camisas do seu time</p>
             <div class="teams-grid" id="teamsGrid">
-                <!-- Teams will be inserted via JS -->
+                <!-- Teams injected by JS -->
             </div>
         </div>
     </section>
 
-    <!-- Delivery Map Section -->
-    <section class="map-section">
+    <!-- ============================================
+         INTERNATIONAL DELIVERY MAP
+         ============================================ -->
+    <section class="section delivery-map">
         <div class="container">
-            <h2 class="section-title" data-translate="delivery-title">Entregas Internacionais</h2>
-            <p class="section-subtitle" data-translate="delivery-subtitle">Enviamos para estas regiões destacadas</p>
-
+            <h2 class="section-title" data-i18n="deliveryTitle">Entregas Internacionais</h2>
+            <p class="section-subtitle" data-i18n="deliverySubtitle">Enviamos para estas regiões destacadas</p>
             <div class="map-container">
-                <div class="map-image"></div>
+                <img src="assets/images/mapa.png" alt="Mapa mundial" class="world-map-img">
+            </div>
         </div>
     </section>
 
-
-    <!-- Jersey Care Section -->
-    <section class="care-section">
+    <!-- ============================================
+         SHIRT CARE TIPS
+         ============================================ -->
+    <section class="section care-section">
         <div class="container">
-            <h2 class="section-title" data-translate="care-title">Cuidados com as Camisas</h2>
+            <h2 class="section-title" data-i18n="careTitle">Cuidados com as Camisas</h2>
             <div class="care-grid">
                 <div class="care-card">
-                    <i class="fas fa-tint"></i>
-                    <h3 data-translate="care-wash">Lavagem</h3>
-                    <p data-translate="care-wash-desc">Lave à mão ou no ciclo delicado. Use água fria e sabão neutro.
+                    <div class="care-icon">💧</div>
+                    <h4 data-i18n="careLavagem">Lavagem</h4>
+                    <p data-i18n="careLavagemDesc">Lave do avesso em água fria e delicada. Use água fria e sabão neutro
                     </p>
                 </div>
                 <div class="care-card">
-                    <i class="fas fa-wind"></i>
-                    <h3 data-translate="care-dry">Secagem</h3>
-                    <p data-translate="care-dry-desc">Não use secadora. Seque à sombra em local ventilado.</p>
+                    <div class="care-icon">💨</div>
+                    <h4 data-i18n="careSecagem">Secagem</h4>
+                    <p data-i18n="careSecagemDesc">Não use secadora. Seque à sombra em local ventilado</p>
                 </div>
                 <div class="care-card">
-                    <i class="fas fa-temperature-low"></i>
-                    <h3 data-translate="care-iron">Passagem</h3>
-                    <p data-translate="care-iron-desc">Passe em temperatura baixa. Nunca passe sobre estampas.</p>
+                    <div class="care-icon">🌡️</div>
+                    <h4 data-i18n="carePassagem">Passagem</h4>
+                    <p data-i18n="carePassagemDesc">Passe em temperatura baixa, sem passar sobre estampas</p>
                 </div>
                 <div class="care-card">
-                    <i class="fas fa-box"></i>
-                    <h3 data-translate="care-store">Armazenamento</h3>
-                    <p data-translate="care-store-desc">Guarde dobrada em local seco, longe de umidade e luz solar.</p>
+                    <div class="care-icon">📦</div>
+                    <h4 data-i18n="careArmazenamento">Armazenamento</h4>
+                    <p data-i18n="careArmazenamentoDesc">Guarde dobrada em local seco, longe de umidade e luz solar</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
+    <!-- ============================================
+         TESTIMONIALS
+         ============================================ -->
+    <section class="section testimonials">
         <div class="container">
-            <h2 class="section-title" data-translate="testimonials-title">O que Nossos Clientes Dizem</h2>
+            <h2 class="section-title" data-i18n="testimonialsTitle">O que Nossos Clientes Dizem</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Silva">
+                        <div class="testimonial-avatar">JS</div>
                         <div>
                             <h4>João Silva</h4>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                            <div class="stars">★★★★★</div>
                         </div>
                     </div>
-                    <p data-translate="testimonial-1">"Camisa de excelente qualidade! Chegou rápido e o atendimento foi
-                        nota 10. Recomendo!"</p>
+                    <p>"Camisas de excelente qualidade! Cheguei rápida e o atendimento foi nota 10. Recomendo!"</p>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Santos">
+                        <div class="testimonial-avatar">MS</div>
                         <div>
                             <h4>Maria Santos</h4>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                            <div class="stars">★★★★★</div>
                         </div>
                     </div>
-                    <p data-translate="testimonial-2">"Comprei 5 camisas e todas vieram perfeitas! Ótimo
-                        custo-benefício."</p>
+                    <p>"Comprei 5 camisas e ficou ótimo o preço. Produto ótimo, entrega rápida. Nota 10!"</p>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Carlos Oliveira">
+                        <div class="testimonial-avatar">CO</div>
                         <div>
                             <h4>Carlos Oliveira</h4>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
+                            <div class="stars">★★★★☆</div>
                         </div>
                     </div>
-                    <p data-translate="testimonial-3">"Já comprei várias vezes e sempre fui bem atendido. Entrega super
+                    <p>"As camisas têm ótimo acabamento. Fiz várias compras e sempre foi perfeito. Entrega super
                         rápida!"</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="container">
-            <h2 class="section-title" data-translate="newsletter-title">Receba Ofertas Exclusivas</h2>
-            <p class="section-subtitle" data-translate="newsletter-subtitle">Cadastre-se e ganhe 10% de desconto na
-                primeira compra!</p>
+    <!-- ============================================
+         NEWSLETTER
+         ============================================ -->
+    <section class="newsletter-section" id="contato">
+        <div class="container newsletter-content">
+            <h3 data-i18n="newsletterTitle">Receba Ofertas Exclusivas</h3>
+            <p data-i18n="newsletterDesc">Cadastre-se e ganhe 10% de desconto na primeira compra!</p>
             <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Seu melhor e-mail" class="newsletter-input" required>
-                <button type="submit" class="btn btn-primary" data-translate="subscribe">Inscrever</button>
+                <input type="email" placeholder="Inscreva seu e-mail" required>
+                <button type="submit" class="btn btn-danger" data-i18n="subscribe">Inscrever</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h4 data-translate="footer-store">Loja</h4>
-                <ul>
-                    <li><a href="pages/produtos.html" data-translate="footer-all-products">Todos os Produtos</a></li>
-                    <li><a href="#destaques" data-translate="footer-featured">Destaques</a></li>
-                    <li><a href="#promocoes" data-translate="footer-promos">Promoções</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4 data-translate="footer-support">Atendimento</h4>
-                <ul>
-                    <li><a href="pages/contato.html" data-translate="footer-contact">Contato</a></li>
-                    <li><a href="#" data-translate="footer-shipping">Envio e Entrega</a></li>
-                    <li><a href="#" data-translate="footer-returns">Devoluções</a></li>
-                    <li><a href="#" data-translate="footer-faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4 data-translate="footer-account">Minha Conta</h4>
-                <ul>
-                    <li><a href="pages/contato.html" data-translate="footer-profile">Meu Perfil</a></li>
-                    <li><a href="pages/pedidos.html" data-translate="footer-orders">Meus Pedidos</a></li>
-                    <li><a href="pages/favoritos.html" data-translate="footer-wishlist">Lista de Desejos</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4 data-translate="footer-social">Redes Sociais</h4>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 data-i18n="footerShop">Loja</h4>
+                    <ul>
+                        <li><a href="#produtos" data-i18n="footerAllShirts">Todos os Produtos</a></li>
+                        <li><a href="#times" data-i18n="footerByTeam">Destaques</a></li>
+                        <li><a href="#promocoes" data-i18n="footerPromos">Promoções</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="footerSupport">Atendimento</h4>
+                    <ul>
+                        <li><a href="#contato" data-i18n="footerContact">Contato</a></li>
+                        <li><a href="#" data-i18n="footerShipping">Envio e Entrega</a></li>
+                        <li><a href="#" data-i18n="footerReturns">Devoluções</a></li>
+                        <li><a href="#" data-i18n="footerFaq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="footerAccount">Minha Conta</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footerMyOrders">Meu Perfil</a></li>
+                        <li><a href="#" data-i18n="footerOrders">Meus Pedidos</a></li>
+                        <li><a href="#" data-i18n="footerWishlist">Lista de Desejos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="footerSocial">Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2024 tomazito.store <span data-translate="footer-rights">Todos os direitos reservados.</span></p>
-            <div class="footer-links">
-                <a href="#" data-translate="footer-privacy">Privacidade</a>
-                <a href="#" data-translate="footer-terms">Termos</a>
+            <div class="footer-bottom">
+                <p>© 2025 Brazuca Store. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#" data-i18n="footerPrivacy">Privacidade</a>
+                    <a href="#" data-i18n="footerTerms">Termos</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/447544180397" target="_blank" class="whatsapp-float" id="whatsappBtn">
-        <i class="fab fa-whatsapp"></i>
-        <span data-translate="whatsapp-text">Fale Conosco</span>
-    </a>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage"></span>
+    <!-- ============================================
+         PRODUCT MODAL
+         ============================================ -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-body">
+                <div class="modal-image" id="modalImage">
+                    <span class="placeholder">👕</span>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalName"></h2>
+                    <p class="modal-desc" id="modalDesc"></p>
+                    <p class="modal-price" id="modalPrice"></p>
+                    <div class="modal-sizes" id="modalSizes"></div>
+                    <button class="btn btn-primary btn-block" id="modalAddToCart" data-i18n="addToCart">Adicionar ao
+                        Carrinho</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="js/translation.js"></script>
+    <!-- ============================================
+         CART SIDEBAR
+         ============================================ -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cartTitle">Carrinho</h3>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items injected by JS -->
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-total">
+                <span data-i18n="total">Total</span>
+                <span id="cartTotal">£0</span>
+            </div>
+            <button class="btn btn-whatsapp btn-block" id="checkoutBtn">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span data-i18n="checkoutWhatsApp">Finalizar no WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================
+         TOAST
+         ============================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/447544180397" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
 </body>
