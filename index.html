@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brazuca Store - As Melhores Camisas de Futebol</title>
+    <title>Tomazito.Store - As Melhores Camisas de Futebol</title>
     <meta name="description"
         content="As melhores camisas de futebol dos times brasileiros e internacionais. £35 cada ou 5 por £100. Entrega Royal Mail em 1-5 dias.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -63,7 +62,7 @@
          ============================================ -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <img src="assets/images/campo.png" alt="Campo de futebol" class="hero-bg-img">
+            <img src="assets/ui/campo.png" alt="Campo de futebol" class="hero-bg-img">
             <div class="hero-overlay"></div>
         </div>
         <div class="container hero-content">
@@ -77,7 +76,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets/images/cruzeiro.png" alt="Camisas de futebol" class="hero-shirt-img">
+                <img src="assets/badges/atletico.svg" alt="Camisas de futebol" class="hero-shirt-img">
             </div>
         </div>
     </section>
@@ -155,6 +154,22 @@
     </section>
 
     <!-- ============================================
+     TEAM PRODUCTS
+============================================ -->
+
+    <section class="section team-products" id="teamProducts" style="display:none;">
+        <div class="container">
+
+            <h2 class="section-title" id="teamTitle"></h2>
+
+            <div class="products-grid" id="teamProductsGrid">
+                <!-- Camisas do time carregadas pelo JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================
          INTERNATIONAL DELIVERY MAP
          ============================================ -->
     <section class="section delivery-map">
@@ -162,7 +177,7 @@
             <h2 class="section-title" data-i18n="deliveryTitle">Entregas Internacionais</h2>
             <p class="section-subtitle" data-i18n="deliverySubtitle">Enviamos para estas regiões destacadas</p>
             <div class="map-container">
-                <img src="assets/images/mapa.png" alt="Mapa mundial" class="world-map-img">
+                <img src="assets/ui/mapa.png" alt="Mapa mundial" class="world-map-img">
             </div>
         </div>
     </section>
@@ -249,7 +264,7 @@
             <h3 data-i18n="newsletterTitle">Receba Ofertas Exclusivas</h3>
             <p data-i18n="newsletterDesc">Cadastre-se e ganhe 10% de desconto na primeira compra!</p>
             <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Inscreva seu e-mail" required>
+                <input type="email" placeholder="Inscreva seu e-mail" required> <br>
                 <button type="submit" class="btn btn-danger" data-i18n="subscribe">Inscrever</button>
             </form>
         </div>
@@ -297,7 +312,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Brazuca Store. Todos os direitos reservados.</p>
+                <p>© 2025 Tomazito.store. Todos os direitos reservados.</p>
                 <div class="footer-links">
                     <a href="#" data-i18n="footerPrivacy">Privacidade</a>
                     <a href="#" data-i18n="footerTerms">Termos</a>
@@ -364,6 +379,7 @@
 
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/translation.js"></script>
 </body>
 
 </html>

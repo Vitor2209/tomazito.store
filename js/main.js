@@ -3,311 +3,545 @@
  * Vanilla JS - Carrinho, Modal, Carousel, WhatsApp Checkout
  */
 
-// ============================================
-// STATE
-// ============================================
-
 let cart = JSON.parse(localStorage.getItem('brazuca_cart') || '[]');
 let favorites = JSON.parse(localStorage.getItem('brazuca_favs') || '[]');
+
 let selectedSize = null;
 let modalProductId = null;
 let carouselOffset = 0;
 
-const WHATSAPP = '447544180397';
+const WHATSAPP = "447544180397";
 
-// ============================================
+
+// ==============================
+// FIND PRODUCT (resolve carrinho)
+// ==============================
+
+function findProduct(id){
+
+    let p = products.find(x => x.id === id)
+
+    if(p) return p
+
+    if(typeof teamShirts !== "undefined"){
+
+        for(const team in teamShirts){
+
+            const found = teamShirts[team].find(x => x.id === id)
+
+            if(found) return found
+
+        }
+
+    }
+
+    return null
+}
+
+
+// ==============================
 // UTIL
-// ============================================
+// ==============================
 
-function saveCart() {
-    localStorage.setItem('brazuca_cart', JSON.stringify(cart));
-    updateCartBadge();
+function showToast(msg){
+
+    const container = document.getElementById("toastContainer")
+
+    const toast = document.createElement("div")
+    toast.className = "toast"
+    toast.textContent = msg
+
+    container.appendChild(toast)
+
+    setTimeout(()=> toast.remove(),3000)
+
 }
 
-function saveFavs() {
-    localStorage.setItem('brazuca_favs', JSON.stringify(favorites));
-    updateFavBadge();
+function saveCart(){
+
+    localStorage.setItem("brazuca_cart", JSON.stringify(cart))
+    updateCartBadge()
+
 }
 
-function updateCartBadge() {
-    const b = document.getElementById('cartCount');
-    const count = cart.reduce((s, i) => s + i.qty, 0);
-    if (b) {
-        b.textContent = count;
-        b.style.display = count > 0 ? 'flex' : 'none';
+function saveFavs(){
+
+    localStorage.setItem("brazuca_favs", JSON.stringify(favorites))
+    updateFavBadge()
+
+}
+
+function updateCartBadge(){
+
+    const b = document.getElementById("cartCount")
+
+    const count = cart.reduce((s,i)=> s + i.qty,0)
+
+    if(b){
+
+        b.textContent = count
+        b.style.display = count > 0 ? "flex":"none"
+
     }
+
 }
 
-function updateFavBadge() {
-    const b = document.getElementById('favCount');
-    if (b) {
-        b.textContent = favorites.length;
-        b.style.display = favorites.length > 0 ? 'flex' : 'none';
+function updateFavBadge(){
+
+    const b = document.getElementById("favCount")
+
+    if(b){
+
+        b.textContent = favorites.length
+        b.style.display = favorites.length > 0 ? "flex":"none"
+
     }
+
 }
 
-function showToast(msg) {
-    const container = document.getElementById('toastContainer');
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = msg;
-    container.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
-}
 
-// ============================================
-// CAROUSEL (COM IMAGEM REAL)
-// ============================================
+// ==============================
+// CAROUSEL
+// ==============================
 
-function renderCarousel() {
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
+function renderCarousel(list = products){
 
-    track.innerHTML = products.map(p => `
+    const track = document.getElementById("carouselTrack")
+
+    if(!track) return
+
+    track.innerHTML = list.map(p => `
+
         <div class="product-card">
+
             <div class="product-image">
+
                 <img src="${p.image}" alt="${p.name}" class="product-img">
-                <button class="product-favorite ${favorites.includes(p.id) ? 'active' : ''}"
+
+                <button class="product-favorite ${favorites.includes(p.id) ? "active":""}"
                     onclick="toggleFavorite(${p.id})">
-                    ${favorites.includes(p.id) ? '♥' : '♡'}
+
+                    ${favorites.includes(p.id) ? "♥":"♡"}
+
                 </button>
+
             </div>
+
             <div class="product-info">
+
                 <h3 class="product-name">${p.name}</h3>
+
                 <p class="product-team">${p.description}</p>
+
                 <p class="product-price">£${p.price}</p>
-                <button class="view-product-btn" onclick="openModal(${p.id})">
+
+                <button class="view-product-btn"
+                    onclick="openModal(${p.id})">
+
                     Ver Produto
+
                 </button>
+
             </div>
+
         </div>
-    `).join('');
 
-    carouselOffset = 0;
-    updateCarouselPosition();
+    `).join("")
+
 }
 
-function getCardWidth() {
-    const track = document.getElementById('carouselTrack');
-    const card = track?.querySelector('.product-card');
-    if (!card) return 260;
-    return card.offsetWidth + 24;
-}
+function carouselPrev(){
 
-function updateCarouselPosition() {
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
-    const shift = carouselOffset * getCardWidth();
-    track.style.transform = `translateX(-${shift}px)`;
-}
-
-function carouselPrev() {
-    if (carouselOffset > 0) {
-        carouselOffset--;
-        updateCarouselPosition();
+    if(carouselOffset > 0){
+        carouselOffset--
+        updateCarouselPosition()
     }
+
 }
 
-function carouselNext() {
-    if (carouselOffset < products.length - 4) {
-        carouselOffset++;
-        updateCarouselPosition();
+function carouselNext(){
+
+    if(carouselOffset < products.length - 4){
+        carouselOffset++
+        updateCarouselPosition()
     }
+
 }
 
-// ============================================
-// TIMES COM ESCUDOS REAIS
-// ============================================
+function updateCarouselPosition(){
 
-function renderTeams() {
-    const grid = document.getElementById('teamsGrid');
-    if (!grid) return;
+    const track = document.getElementById("carouselTrack")
+
+    const shift = carouselOffset * 280
+
+    track.style.transform = `translateX(-${shift}px)`
+
+}
+
+
+// ==============================
+// TEAMS
+// ==============================
+
+function renderTeams(){
+
+    const grid = document.getElementById("teamsGrid")
 
     grid.innerHTML = brazilianTeams.map(team => `
-        <div class="team-badge" onclick="filterByTeam('${team.name}')">
+
+        <div class="team-badge"
+             onclick="showTeamProducts('${team.id}')">
+
             <div class="team-logo">
                 <img src="${team.badge}" alt="${team.name}">
             </div>
+
             <span class="team-name">${team.name}</span>
+
         </div>
-    `).join('');
+
+    `).join("")
+
 }
 
-// ============================================
-// FAVORITES
-// ============================================
 
-function toggleFavorite(id) {
-    const idx = favorites.indexOf(id);
+// ==============================
+// TEAM PRODUCTS
+// ==============================
 
-    if (idx > -1) {
-        favorites.splice(idx, 1);
-        showToast('Removido dos favoritos!');
-    } else {
-        favorites.push(id);
-        showToast('Adicionado aos favoritos!');
+function showTeamProducts(teamId){
+
+    if(typeof teamShirts === "undefined"){
+        showToast("Camisas deste time em breve!")
+        return
     }
 
-    saveFavs();
-    renderCarousel();
+    const shirts = teamShirts[teamId]
+
+    if(!shirts){
+        showToast("Camisas deste time em breve!")
+        return
+    }
+
+    const grid = document.getElementById("teamProductsGrid")
+
+    grid.innerHTML = shirts.map(p => `
+
+        <div class="product-card">
+
+            <div class="product-image">
+                <img src="${p.image}" class="product-img">
+            </div>
+
+            <div class="product-info">
+
+                <h3 class="product-name">${p.name}</h3>
+
+                <p class="product-team">${p.description}</p>
+
+                <p class="product-price">£${p.price}</p>
+
+                <button class="view-product-btn"
+                    onclick="openModal(${p.id})">
+
+                    Ver Produto
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("")
+
+    const team = brazilianTeams.find(t => t.id === teamId)
+
+    document.getElementById("teamTitle").textContent = team.name
+
+    document.getElementById("teamProducts").style.display = "block"
+
+    document.getElementById("teamProducts")
+        .scrollIntoView({behavior:"smooth"})
+
 }
 
-// ============================================
-// MODAL (COM IMAGEM REAL)
-// ============================================
 
-function openModal(id) {
-    const p = products.find(x => x.id === id);
-    if (!p) return;
+// ==============================
+// FAVORITES
+// ==============================
 
-    modalProductId = id;
-    selectedSize = null;
+function toggleFavorite(id){
 
-    document.getElementById('modalName').textContent = p.name;
-    document.getElementById('modalDesc').textContent = p.description;
-    document.getElementById('modalPrice').textContent = '£' + p.price;
+    const idx = favorites.indexOf(id)
 
-    document.getElementById('modalImage').innerHTML =
-        `<img src="${p.image}" alt="${p.name}" class="modal-img">`;
+    if(idx > -1){
 
-    document.getElementById('modalSizes').innerHTML = p.sizes.map(s =>
-        `<button class="size-btn" onclick="selectSize('${s}', this)">${s}</button>`
-    ).join('');
+        favorites.splice(idx,1)
+        showToast("Removido dos favoritos")
 
-    document.getElementById('productModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    }else{
+
+        favorites.push(id)
+        showToast("Adicionado aos favoritos")
+
+    }
+
+    saveFavs()
+    renderCarousel()
+
 }
 
-function closeModal() {
-    document.getElementById('productModal').classList.remove('active');
-    document.body.style.overflow = '';
+
+// ==============================
+// MODAL
+// ==============================
+
+function openModal(id){
+
+    const p = findProduct(id)
+
+    if(!p) return
+
+    modalProductId = id
+    selectedSize = null
+
+    document.getElementById("modalName").textContent = p.name
+    document.getElementById("modalDesc").textContent = p.description
+    document.getElementById("modalPrice").textContent = "£"+p.price
+
+    document.getElementById("modalImage").innerHTML =
+        `<img src="${p.image}" class="modal-img">`
+
+    document.getElementById("modalSizes").innerHTML =
+        p.sizes.map(size => `
+            <button class="size-btn"
+                onclick="selectSize('${size}',this)">
+                ${size}
+            </button>
+        `).join("")
+
+    document.getElementById("productModal").classList.add("active")
+
+    document.body.style.overflow = "hidden"
+
 }
 
-function selectSize(size, btn) {
-    selectedSize = size;
-    document.querySelectorAll('#modalSizes .size-btn')
-        .forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
+function closeModal(){
+
+    document.getElementById("productModal").classList.remove("active")
+    document.body.style.overflow = ""
+
 }
 
-function addToCartFromModal() {
-    if (!selectedSize) {
-        showToast('Selecione um tamanho primeiro');
-        return;
+function selectSize(size,btn){
+
+    selectedSize = size
+
+    document.querySelectorAll(".size-btn")
+        .forEach(b => b.classList.remove("selected"))
+
+    btn.classList.add("selected")
+
+}
+
+
+// ==============================
+// ADD TO CART
+// ==============================
+
+function addToCartFromModal(){
+
+    if(!selectedSize){
+
+        showToast("Selecione um tamanho")
+        return
+
     }
 
     const existing = cart.find(i =>
-        i.id === modalProductId && i.size === selectedSize
-    );
+        i.id === modalProductId &&
+        i.size === selectedSize
+    )
 
-    if (existing) {
-        existing.qty++;
-    } else {
-        cart.push({ id: modalProductId, size: selectedSize, qty: 1 });
+    if(existing){
+
+        existing.qty++
+
+    }else{
+
+        cart.push({
+            id: modalProductId,
+            size: selectedSize,
+            qty:1
+        })
+
     }
 
-    saveCart();
-    showToast('Adicionado ao carrinho!');
-    closeModal();
+    saveCart()
+
+    showToast("Adicionado ao carrinho")
+
+    closeModal()
+
 }
 
-// ============================================
+
+// ==============================
 // CART
-// ============================================
+// ==============================
 
-function openCart() {
-    renderCartItems();
-    document.getElementById('cartSidebar').classList.add('active');
-    document.getElementById('cartOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
+function openCart(){
+
+    renderCartItems()
+
+    document.getElementById("cartSidebar").classList.add("active")
+    document.getElementById("cartOverlay").classList.add("active")
+
 }
 
-function closeCart() {
-    document.getElementById('cartSidebar').classList.remove('active');
-    document.getElementById('cartOverlay').classList.remove('active');
-    document.body.style.overflow = '';
+function closeCart(){
+
+    document.getElementById("cartSidebar").classList.remove("active")
+    document.getElementById("cartOverlay").classList.remove("active")
+
 }
 
-function renderCartItems() {
-    const container = document.getElementById('cartItems');
-    const footer = document.getElementById('cartFooter');
+function renderCartItems(){
 
-    if (cart.length === 0) {
-        container.innerHTML = `<p>Seu carrinho está vazio</p>`;
-        footer.style.display = 'none';
-        return;
+    const container = document.getElementById("cartItems")
+    const totalElement = document.getElementById("cartTotal")
+
+    if(cart.length === 0){
+        container.innerHTML = "<p>Seu carrinho está vazio</p>"
+        totalElement.textContent = "£0"
+        return
     }
 
-    footer.style.display = 'block';
+    let total = 0
 
-    container.innerHTML = cart.map((item, idx) => {
-        const p = products.find(x => x.id === item.id);
+    container.innerHTML = cart.map((item, index) => {
+
+        const p = findProduct(item.id)
+
+        if(!p) return ""
+
+        const subtotal = p.price * item.qty
+        total += subtotal
+
         return `
-            <div class="cart-item">
-                <div>${p.name}</div>
-                <div>${item.size}</div>
-                <div>£${p.price * item.qty}</div>
-                <button onclick="removeFromCart(${idx})">Remover</button>
+        <div class="cart-item">
+
+            <div class="cart-item-info">
+                <strong>${p.name}</strong>
+                <span>Tamanho: ${item.size}</span>
+                <span>Qtd: ${item.qty}</span>
             </div>
-        `;
-    }).join('');
 
-    const total = cart.reduce((s, i) => {
-        const p = products.find(x => x.id === i.id);
-        return s + (p.price * i.qty);
-    }, 0);
+            <div class="cart-item-price">
+                £${subtotal}
+            </div>
 
-    document.getElementById('cartTotal').textContent = '£' + total;
+            <button class="cart-remove" onclick="removeFromCart(${index})">
+                Remover
+            </button>
+
+        </div>
+        `
+    }).join("")
+
+    totalElement.textContent = "£" + total
+}
+function removeFromCart(index){
+
+    cart.splice(index,1)
+
+    saveCart()
+
+    renderCartItems()
+
+    showToast("Item removido")
+
 }
 
-function removeFromCart(idx) {
-    cart.splice(idx, 1);
-    saveCart();
-    renderCartItems();
-}
 
-// ============================================
+// ==============================
 // WHATSAPP
-// ============================================
+// ==============================
 
-function checkoutWhatsApp() {
-    if (cart.length === 0) return;
+function checkoutWhatsApp(){
 
-    let msg = 'Olá, quero comprar:\n\n';
+    if(cart.length === 0){
+        showToast("Carrinho vazio")
+        return
+    }
+
+    let total = 0
+    let msg = "Olá, quero comprar:%0A%0A"
 
     cart.forEach(item => {
-        const p = products.find(x => x.id === item.id);
-        msg += `${p.name} | Tamanho ${item.size} | Qtd ${item.qty}\n`;
-    });
 
-    const total = cart.reduce((s, i) => {
-        const p = products.find(x => x.id === i.id);
-        return s + (p.price * i.qty);
-    }, 0);
+        const p = findProduct(item.id)
+        if(!p) return
 
-    msg += `\nTotal: £${total}`;
+        const subtotal = p.price * item.qty
+        total += subtotal
 
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+        msg += `${p.name} | Tamanho ${item.size} | Qtd ${item.qty} | £${subtotal}%0A`
+
+    })
+
+    msg += `%0ATotal: £${total}`
+
+    window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, "_blank")
+
 }
 
-// ============================================
+// ==============================
+// MENU
+// ==============================
+
+const menuToggle = document.getElementById("menuToggle")
+const nav = document.getElementById("nav")
+
+menuToggle.addEventListener("click",()=>{
+    nav.classList.toggle("active")
+})
+
+
+// ==============================
 // INIT
-// ============================================
+// ==============================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
-    renderCarousel();
-    renderTeams();
-    updateCartBadge();
-    updateFavBadge();
+    renderCarousel()
+    renderTeams()
 
-    document.getElementById('cartBtn')?.addEventListener('click', openCart);
-    document.getElementById('cartClose')?.addEventListener('click', closeCart);
-    document.getElementById('cartOverlay')?.addEventListener('click', closeCart);
-    document.getElementById('modalClose')?.addEventListener('click', closeModal);
-    document.getElementById('modalAddToCart')?.addEventListener('click', addToCartFromModal);
-    document.getElementById('carouselPrev')?.addEventListener('click', carouselPrev);
-    document.getElementById('carouselNext')?.addEventListener('click', carouselNext);
-    document.getElementById('checkoutBtn')?.addEventListener('click', checkoutWhatsApp);
+    updateCartBadge()
+    updateFavBadge()
 
-});
+    document.getElementById("cartBtn")
+        ?.addEventListener("click",openCart)
+
+    document.getElementById("cartClose")
+        ?.addEventListener("click",closeCart)
+
+    document.getElementById("cartOverlay")
+        ?.addEventListener("click",closeCart)
+
+    document.getElementById("modalClose")
+        ?.addEventListener("click",closeModal)
+
+    document.getElementById("modalAddToCart")
+        ?.addEventListener("click",addToCartFromModal)
+
+    document.getElementById("carouselPrev")
+        ?.addEventListener("click",carouselPrev)
+
+    document.getElementById("carouselNext")
+        ?.addEventListener("click",carouselNext)
+
+    document.getElementById("checkoutBtn")
+        ?.addEventListener("click",checkoutWhatsApp)
+
+})
